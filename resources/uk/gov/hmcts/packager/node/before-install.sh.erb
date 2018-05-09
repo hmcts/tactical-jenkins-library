@@ -1,0 +1,8 @@
+#!/bin/bash
+
+id <%= username %> >/dev/null 2>&1
+if [ ! $? -eq 0 ] ; then
+  /usr/sbin/groupadd -g 200 <%= username %> >/dev/null 2>&1
+  /usr/sbin/useradd -g 200 -u 200 -d /opt/<%= username %> -s /bin/bash <%= username %> >/dev/null 2>&1
+fi
+

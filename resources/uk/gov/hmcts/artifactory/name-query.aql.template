@@ -1,0 +1,7 @@
+items.find({
+    "repo" : "${srcRepo}"}, {"name":{"$match":"${productName}-${appName}*"},
+    "@test.testOK":{"$match":"true"}
+  }
+)
+  .sort({"$desc": ["created"]})
+  .limit(1)

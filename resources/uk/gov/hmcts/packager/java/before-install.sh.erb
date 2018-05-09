@@ -1,0 +1,7 @@
+#!/bin/bash
+
+id <%= username %> >/dev/null 2>&1
+if [ ! $? -eq 0 ] ; then
+  /usr/sbin/groupadd -g 200 <%= username %>
+  /usr/sbin/adduser -g 200 -u 200 -d /home/<%= username %> -s /bin/bash <%= username %>
+fi

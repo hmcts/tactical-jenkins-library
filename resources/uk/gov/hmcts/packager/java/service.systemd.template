@@ -1,0 +1,20 @@
+[Unit]
+Description=${PROJECT_NAME}-${APP_NAME}
+
+[Service]
+ExecStartPre=-/bin/sh -c "rm -rf /opt/${PROJECT_NAME}/${APP_NAME}/tmp/*"
+# /bin/java wasn't passing JAVA_OPTS properly
+ExecStart=/bin/sh -c "/usr/bin/java ${JAVA_OPTS} -jar ${APP_NAME}.jar ${FRAMEWORK_ARGS} 2>&1 | /usr/bin/journald-proxy"
+WorkingDirectory=/opt/${PROJECT_NAME}/${APP_NAME}
+Restart=always
+RestartSec=10
+User=${USERNAME}
+# Default java_opts override them in your sysconfig if needed
+Environment="JAVA_OPTS=-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/${PROJECT_NAME}/${APP_NAME} -Xms512m -Xmx2048m -Djava.io.tmpdir=/opt/${PROJECT_NAME}/${APP_NAME}/tmp"
+# Server wide variables for java
+EnvironmentFile=-/etc/sysconfig/java
+# Application specific variables
+EnvironmentFile=-/etc/sysconfig/${PROJECT_NAME}-${APP_NAME}
+
+[Install]
+WantedBy=multi-user.target

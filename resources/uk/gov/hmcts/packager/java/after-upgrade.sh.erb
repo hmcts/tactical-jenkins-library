@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [ <%= app_type %> == 'dropwizard' ] ; then
+  set -o allexport
+  source /etc/sysconfig/<%= name %>
+  set +o allexport
+
+  /usr/bin/java -jar /opt/<%= project %>/<%= shortname %>/<%= shortname %>.jar db migrate /opt/<%= project %>/<%= shortname %>/<%= config_file_name %>
+fi
+
+if [ <%= create_tmp_dir %> == 'true' ] ; then
+  mkdir -p /opt/<%= project %>/<%= shortname %>/tmp
+  chown <%= username %> /opt/<%= project %>/<%= shortname %>/tmp
+fi
+
+systemctl daemon-reload
+systemctl start <%= name %>

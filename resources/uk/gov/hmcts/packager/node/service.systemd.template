@@ -1,0 +1,13 @@
+[Unit]
+Description=${PROJECT_NAME}-${APP_NAME}
+
+[Service]
+ExecStart=/bin/sh -c "/bin/npm start 2>&1 | /usr/bin/journald-proxy"
+WorkingDirectory=/opt/${PROJECT_NAME}/${APP_NAME}
+Restart=always
+RestartSec=10
+User=${USERNAME}
+EnvironmentFile=-/etc/sysconfig/${PROJECT_NAME}-${APP_NAME}
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,738 @@
+[
+  {
+    "repo": "hmcts/cmc-ansible",
+    "product": "cmc",
+    "limit": [
+      {
+        "environment": "demo",
+        "ansible_pattern": "env_demo"
+      },
+      {
+        "environment": "preprod",
+        "ansible_pattern": "env_preprod"
+      },
+      {
+        "environment": "prod",
+        "ansible_pattern": "env_prod"
+      }
+    ],
+    "tags": [
+      {
+        "environment": "demo",
+        "azure_tags": "product:cmc,env:demo"
+      },
+      {
+        "environment": "preprod",
+        "azure_tags": "product:cmc,env:preprod"
+      },
+      {
+        "environment": "prod",
+        "azure_tags": "product:cmc,env:prod"
+      }
+    ]
+  },
+  {
+    "repo": "probate/ansible-probate-rpm",
+    "product": "probate",
+    "limit": [
+      {
+        "environment": "dev",
+        "ansible_pattern": "env_dev"
+      },
+      {
+        "environment": "demo",
+        "ansible_pattern": "env_demo"
+      },
+      {
+        "environment": "test",
+        "ansible_pattern": "env_test"
+      },
+      {
+        "environment": "preprod",
+        "ansible_pattern": "env_preprod"
+      },
+      {
+        "environment": "prod",
+        "ansible_pattern": "env_prod"
+      }
+    ],
+    "tags": [
+      {
+        "environment": "dev",
+        "azure_tags": "product:probate,env:dev"
+      },
+      {
+        "environment": "demo",
+        "azure_tags": "product:probate,env:demo"
+      },
+      {
+        "environment": "test",
+        "azure_tags": "product:probate,env:test"
+      },
+      {
+        "environment": "preprod",
+        "azure_tags": "product:probate,env:preprod"
+      },
+      {
+        "environment": "prod",
+        "azure_tags": "product:probate,env:prod"
+      }
+    ]
+  },
+  {
+    "repo": "contino/ansible-contino",
+    "product": "contino",
+    "limit": [
+      {
+        "environment": "dev",
+        "ansible_pattern": "env_dev"
+      },
+      {
+        "environment": "prod",
+        "ansible_pattern": "env_prod"
+      }
+    ],
+    "tags": [
+      {
+        "environment": "dev",
+        "azure_tags": "product:contino,env:dev"
+      },
+      {
+        "environment": "prod",
+        "azure_tags": "product:contino,env:prod"
+      }
+    ]
+  },
+  {
+    "repo": "hmcts/ansible-management",
+    "product": "management",
+    "tags": [
+      {
+        "environment": "mgmt",
+        "azure_tags": "product:mgmt"
+      }
+    ]
+  },
+  {
+    "repo": "devops/ansible-dmz",
+    "product": "dmz",
+    "tags": [
+      {
+        "environment": "dev",
+        "azure_tags": "tier:dmz,env:dev"
+      },
+      {
+        "environment": "prod",
+        "azure_tags": "tier:dmz,env:prod"
+      }
+    ]
+  },
+  {
+    "repo": "devops/ansible-f5",
+    "product": "f5",
+    "tags": [
+      {
+        "environment": "test",
+        "azure_tags": "role:f5"
+      }
+    ]
+  },
+  {
+    "repo": "sscs/ansible-sscs",
+    "product": "sscs_frontend",
+    "tags": [
+      {
+        "environment": "dev",
+        "azure_tags": "product:sscs,env:dev,role:frontend"
+      },
+      {
+        "environment": "demo",
+        "azure_tags": "product:sscs,env:demo,role:frontend"
+      },
+      {
+        "environment": "test",
+        "azure_tags": "product:sscs,env:test,role:frontend"
+      },
+      {
+        "environment": "preprod",
+        "azure_tags": "product:sscs,env:preprod,role:frontend"
+      },
+      {
+        "environment": "prod",
+        "azure_tags": "product:sscs,env:prod,role:frontend"
+      }
+    ]
+  },
+  {
+    "repo": "sscs/ansible-sscs",
+    "product": "sscs_backend",
+    "tags": [
+      {
+        "environment": "dev",
+        "azure_tags": "product:sscs,env:dev,role:backend"
+      },
+      {
+        "environment": "demo",
+        "azure_tags": "product:sscs,env:demo,role:backend"
+      },
+      {
+        "environment": "test",
+        "azure_tags": "product:sscs,env:test,role:backend"
+      },
+      {
+        "environment": "preprod",
+        "azure_tags": "product:sscs,env:preprod,role:backend"
+      },
+      {
+        "environment": "prod",
+        "azure_tags": "product:sscs,env:prod,role:backend"
+      }
+    ]
+  },
+  {
+    "repo": "sscs/ansible-sscs",
+    "product": "sscs",
+    "tags": [
+      {
+        "environment": "dev",
+        "azure_tags": "product:sscs,env:dev"
+      },
+      {
+        "environment": "demo",
+        "azure_tags": "product:sscs,env:demo"
+      },
+      {
+        "environment": "test",
+        "azure_tags": "product:sscs,env:test"
+      },
+      {
+        "environment": "preprod",
+        "azure_tags": "product:sscs,env:preprod"
+      },
+      {
+        "environment": "prod",
+        "azure_tags": "product:sscs,env:prod"
+      }
+    ]
+  },
+  {
+    "repo": "divorce/ansible-divorce",
+    "product": "divorce",
+    "limit": [
+      {
+        "environment": "dev",
+        "ansible_pattern": "env_dev"
+      },
+      {
+        "environment": "demo",
+        "ansible_pattern": "env_demo"
+      },
+      {
+        "environment": "test",
+        "ansible_pattern": "env_test"
+      },
+      {
+        "environment": "stage",
+        "ansible_pattern": "env_stage"
+      },
+      {
+        "environment": "preprod",
+        "ansible_pattern": "env_preprod"
+      },
+      {
+        "environment": "prod",
+        "ansible_pattern": "env_prod"
+      }
+    ],
+    "tags": [
+      {
+        "environment": "dev",
+        "azure_tags": "product:divorce,env:dev"
+      },
+      {
+        "environment": "demo",
+        "azure_tags": "product:divorce,env:demo"
+      },
+      {
+        "environment": "test",
+        "azure_tags": "product:divorce,env:test"
+      },
+      {
+        "environment": "stage",
+        "azure_tags": "product:divorce,env:stage"
+      },
+      {
+        "environment": "preprod",
+        "azure_tags": "product:divorce,env:preprod"
+      },
+      {
+        "environment": "prod",
+        "azure_tags": "product:divorce,env:prod"
+      }
+    ]
+  },
+  {
+    "repo": "hmcts/ccfr-ansible-fees-register",
+    "product": "ccfr",
+    "limit": [
+      {
+        "environment": "dev",
+        "ansible_pattern": "env_dev"
+      },
+      {
+        "environment": "test",
+        "ansible_pattern": "env_test"
+      },
+      {
+        "environment": "demo",
+        "ansible_pattern": "env_demo"
+      },
+      {
+        "environment": "preprod",
+        "ansible_pattern": "env_preprod"
+      },
+      {
+        "environment": "prod",
+        "ansible_pattern": "env_prod"
+      }
+    ],
+    "tags": [
+      {
+        "environment": "dev",
+        "azure_tags": "product:ccfr,env:dev"
+      },
+      {
+        "environment": "test",
+        "azure_tags": "product:ccfr,env:test"
+      },
+      {
+        "environment": "demo",
+        "azure_tags": "product:ccfr,env:demo"
+      },
+      {
+        "environment": "preprod",
+        "azure_tags": "product:ccfr,env:preprod"
+      },
+      {
+        "environment": "prod",
+        "azure_tags": "product:ccfr,env:prod"
+      }
+    ]
+  },
+  {
+    "repo": "hmcts/ccfr-ansible-fees-register-admin",
+    "product": "ccfr_admin",
+    "limit": [
+      {
+        "environment": "dev",
+        "ansible_pattern": "env_dev"
+      },
+      {
+        "environment": "test",
+        "ansible_pattern": "env_test"
+      },
+      {
+        "environment": "demo",
+        "ansible_pattern": "env_demo"
+      },
+      {
+        "environment": "preprod",
+        "ansible_pattern": "env_preprod"
+      },
+      {
+        "environment": "prod",
+        "ansible_pattern": "env_prod"
+      }
+    ],
+    "tags": [
+      {
+        "environment": "dev",
+        "azure_tags": "product:ccfr,env:dev"
+      },
+      {
+        "environment": "test",
+        "azure_tags": "product:ccfr,env:test"
+      },
+      {
+        "environment": "demo",
+        "azure_tags": "product:ccfr,env:demo"
+      },
+      {
+        "environment": "prod",
+        "azure_tags": "product:ccfr,env:prod"
+      },
+      {
+        "environment": "preprod",
+        "azure_tags": "product:ccfr,env:preprod"
+      }
+    ]
+  },
+  {
+    "repo": "hmcts/ccpay-app-ansible",
+    "product": "ccpay",
+    "limit": [
+      {
+        "environment": "dev",
+        "ansible_pattern": "env_dev"
+      },
+      {
+        "environment": "test",
+        "ansible_pattern": "env_test"
+      },
+      {
+        "environment": "demo",
+        "ansible_pattern": "env_demo"
+      },
+      {
+        "environment": "preprod",
+        "ansible_pattern": "env_preprod"
+      },
+      {
+        "environment": "prod",
+        "ansible_pattern": "env_prod"
+      }
+    ],
+    "tags": [
+      {
+        "environment": "dev",
+        "azure_tags": "product:ccpay,env:dev"
+      },
+      {
+        "environment": "test",
+        "azure_tags": "product:ccpay,env:test"
+      },
+      {
+        "environment": "demo",
+        "azure_tags": "product:ccpay,env:demo"
+      },
+      {
+        "environment": "preprod",
+        "azure_tags": "product:ccpay,env:preprod"
+      },
+      {
+        "environment": "prod",
+        "azure_tags": "product:ccpay,env:prod"
+      }
+    ]
+  },
+  {
+    "repo": "hmcts/ccpay-ansible-payment-reporting",
+    "product": "ccpay-reporting",
+    "limit": [
+      {
+        "environment": "dev",
+        "ansible_pattern": "env_dev"
+      },
+      {
+        "environment": "test",
+        "ansible_pattern": "env_test"
+      },
+      {
+        "environment": "demo",
+        "ansible_pattern": "env_demo"
+      },
+      {
+        "environment": "preprod",
+        "ansible_pattern": "env_preprod"
+      },
+      {
+        "environment": "prod",
+        "ansible_pattern": "env_prod"
+      }
+    ],
+    "tags": [
+      {
+        "environment": "dev",
+        "azure_tags": "product:ccpay-reporting,env:dev"
+      },
+      {
+        "environment": "test",
+        "azure_tags": "product:ccpay-reporting,env:test"
+      },
+      {
+        "environment": "demo",
+        "azure_tags": "product:ccpay-reporting,env:demo"
+      },
+      {
+        "environment": "preprod",
+        "azure_tags": "product:ccpay-reporting,env:preprod"
+      },
+      {
+        "environment": "prod",
+        "azure_tags": "product:ccpay-reporting,env:prod"
+      }
+    ]
+  },
+  {
+    "repo": "hmcts/idam-ansible",
+    "product": "ccidam",
+    "limit": [
+      {
+        "environment": "dev",
+        "ansible_pattern": "env_dev"
+      },
+      {
+        "environment": "test",
+        "ansible_pattern": "env_test"
+      },
+      {
+        "environment": "demo",
+        "ansible_pattern": "env_demo"
+      },
+      {
+        "environment": "preprod",
+        "ansible_pattern": "env_preprod"
+      },
+      {
+        "environment": "prod",
+        "ansible_pattern": "env_prod"
+      }
+    ],
+    "tags": [
+      {
+        "environment": "dev",
+        "azure_tags": "product:ccidam,env:dev"
+      },
+      {
+        "environment": "test",
+        "azure_tags": "product:ccidam,env:test"
+      },
+      {
+        "environment": "demo",
+        "azure_tags": "product:ccidam,env:demo"
+      },
+      {
+        "environment": "preprod",
+        "azure_tags": "product:ccidam,env:preprod"
+      },
+      {
+        "environment": "prod",
+        "azure_tags": "product:ccidam,env:prod"
+      }
+    ]
+  },
+  {
+    "repo": "hmcts/ccd-ansible",
+    "product": "ccdata",
+    "limit": [
+      {
+        "environment": "dev",
+        "ansible_pattern": "env_dev"
+      },
+      {
+        "environment": "test",
+        "ansible_pattern": "env_test"
+      },
+      {
+        "environment": "demo",
+        "ansible_pattern": "env_demo"
+      },
+      {
+        "environment": "preprod",
+        "ansible_pattern": "env_preprod"
+      },
+      {
+        "environment": "prod",
+        "ansible_pattern": "env_prod"
+      }
+    ],
+    "tags": [
+      {
+        "environment": "dev",
+        "azure_tags": "product:ccdata,env:dev"
+      },
+      {
+        "environment": "test",
+        "azure_tags": "product:ccdata,env:test"
+      },
+      {
+        "environment": "demo",
+        "azure_tags": "product:ccdata,env:demo"
+      },
+      {
+        "environment": "preprod",
+        "azure_tags": "product:ccdata,env:preprod"
+      },
+      {
+        "environment": "prod",
+        "azure_tags": "product:ccdata,env:prod"
+      }
+    ]
+  },
+  {
+    "repo": "hmcts/dm-ansible",
+    "product": "dm",
+    "limit": [
+      {
+        "environment": "dev",
+        "ansible_pattern": "env_dev"
+      },
+      {
+        "environment": "test",
+        "ansible_pattern": "env_test"
+      },
+      {
+        "environment": "demo",
+        "ansible_pattern": "env_demo"
+      },
+      {
+        "environment": "preprod",
+        "ansible_pattern": "env_preprod"
+      },
+      {
+        "environment": "prod",
+        "ansible_pattern": "env_prod"
+      }
+    ],
+    "tags": [
+      {
+        "environment": "dev",
+        "azure_tags": "product:dm,env:dev"
+      },
+      {
+        "environment": "test",
+        "azure_tags": "product:dm,env:test"
+      },
+      {
+        "environment": "demo",
+        "azure_tags": "product:dm,env:demo"
+      },
+      {
+        "environment": "preprod",
+        "azure_tags": "product:dm,env:preprod"
+      },
+      {
+        "environment": "prod",
+        "azure_tags": "product:dm,env:prod"
+      }
+    ]
+  },
+  {
+    "repo": "hmcts/em-ansible",
+    "product": "em",
+    "limit": [
+      {
+        "environment": "dev",
+        "ansible_pattern": "env_dev"
+      },
+      {
+        "environment": "test",
+        "ansible_pattern": "env_test"
+      },
+      {
+        "environment": "demo",
+        "ansible_pattern": "env_demo"
+      },
+      {
+        "environment": "preprod",
+        "ansible_pattern": "env_preprod"
+      },
+      {
+        "environment": "prod",
+        "ansible_pattern": "env_prod"
+      }
+    ],
+    "tags": [
+      {
+        "environment": "dev",
+        "azure_tags": "product:em,env:dev"
+      },
+      {
+        "environment": "test",
+        "azure_tags": "product:em,env:test"
+      },
+      {
+        "environment": "demo",
+        "azure_tags": "product:em,env:demo"
+      },
+      {
+        "environment": "preprod",
+        "azure_tags": "product:em,env:preprod"
+      },
+      {
+        "environment": "prod",
+        "azure_tags": "product:em,env:prod"
+      }
+    ]
+  },
+  {
+    "repo": "hmcts/bar-app-ansible",
+    "product": "bar",
+    "limit": [
+      {
+        "environment": "dev",
+        "ansible_pattern": "env_dev"
+      },
+      {
+        "environment": "test",
+        "ansible_pattern": "env_test"
+      },
+      {
+        "environment": "demo",
+        "ansible_pattern": "env_demo"
+      },
+      {
+        "environment": "prod",
+        "ansible_pattern": "env_prod"
+      }
+    ],
+    "tags": [
+      {
+        "environment": "dev",
+        "azure_tags": "product:bar,env:dev"
+      },
+      {
+        "environment": "test",
+        "azure_tags": "product:bar,env:test"
+      },
+      {
+        "environment": "demo",
+        "azure_tags": "product:bar,env:demo"
+      },
+      {
+        "environment": "prod",
+        "azure_tags": "product:bar,env:prod"
+      }
+    ]
+  },
+  {
+    "repo": "hmcts/bar-web-ansible",
+    "product": "bar_web",
+    "limit": [
+      {
+        "environment": "dev",
+        "ansible_pattern": "env_dev"
+      },
+      {
+        "environment": "test",
+        "ansible_pattern": "env_test"
+      },
+      {
+        "environment": "demo",
+        "ansible_pattern": "env_demo"
+      },
+      {
+        "environment": "prod",
+        "ansible_pattern": "env_prod"
+      }
+    ],
+    "tags": [
+      {
+        "environment": "dev",
+        "azure_tags": "product:bar,env:dev"
+      },
+      {
+        "environment": "test",
+        "azure_tags": "product:bar,env:test"
+      },
+      {
+        "environment": "demo",
+        "azure_tags": "product:bar,env:demo"
+      },
+      {
+        "environment": "prod",
+        "azure_tags": "product:bar,env:prod"
+      }
+    ]
+  }
+]

@@ -1,0 +1,6 @@
+items.find({
+    "repo" : "${srcRepo}"}, {"name":{"$match":"${fullRpmName}"}
+  }
+)
+  .include("property.*")
+  .sort({"$desc": ["name"]})
