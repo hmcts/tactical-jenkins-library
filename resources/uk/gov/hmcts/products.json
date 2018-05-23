@@ -32,7 +32,7 @@
     ]
   },
   {
-    "repo": "probate/ansible-probate-rpm",
+    "repo": "hmcts/ansible-probate-rpm",
     "product": "probate",
     "limit": [
       {
