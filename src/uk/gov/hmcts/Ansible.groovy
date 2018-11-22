@@ -21,14 +21,14 @@ class Ansible implements Serializable {
   }
 
   def runInstallPlaybook(versions, environment, ansible_branch='master', azure_tags='', ansible_tags='all', verbose=false) {
-    return run(versions, environment, 'install.yml', ansible_branch, azure_tags, ansible_tags, verbose)
+    return run(versions, environment, 'install.yml', ansible_branch, azure_tags, ansible_tags, verbose, hostList)
   }
 
   def runDeployPlaybook(versions, environment, ansible_branch='master', azure_tags='', ansible_tags='all', verbose=false) {
     return run(versions, environment, 'deploy.yml', ansible_branch, azure_tags, ansible_tags, verbose)
   }
 
-  def run(versions, environment, playbookName, ansible_branch='master', azure_tags='', ansible_tags='all', verbose=false) {
+  def run(versions, environment, playbookName, ansible_branch='master', azure_tags='', ansible_tags='all', verbose=false, hostList='') {
     // Generic checkout used to allow checking out of commit hashes
     // http://stackoverflow.com/a/43613408/4951015
 
@@ -45,16 +45,6 @@ class Ansible implements Serializable {
     }
 
     steps.sh """
-      export PYTHONHTTPSVERIFY=0
-      if [ ! -d "venv" ]; then
-          pip install --user virtualenv
-          virtualenv venv
-      fi
-      source venv/bin/activate
-      virtualenv --relocatable venv
-      # dirty hack: https://dmsimard.com/2016/01/08/selinux-python-virtualenv-chroot-and-ansible-dont-play-nice/
-      cp -r /usr/lib64/python2.7/site-packages/selinux/ venv/lib/python2.7/site-packages
-      pip install ansible azure-cli
       ansible-galaxy install -r requirements.yml --force --roles-path=roles/
     """
 
@@ -82,13 +72,23 @@ class Ansible implements Serializable {
           export VAULT_ADDR='https://vault.reform.hmcts.net:6200'
           export ANSIBLE_FORCE_COLOR=true
 
-          ansible-playbook ${verbosestring} "${playbookName}" \
-          -i ./inventory \
-          --limit "${limit(environment, playbookName)}" \
-          --extra-vars "deploy_target=${env(environment)}" \
-          --extra-vars "{'versions': ${versions} }" \
-          --extra-vars "ansible_python_interpreter=venv/bin/python2" \
-          --tags "${ansible_tags}"
+          if [[ -z "${hostList}// }" ]]; then
+            ansible-playbook ${verbosestring} "${playbookName}" \
+            -i ./inventory \
+            --limit "${limit(environment, playbookName)}" \
+            --extra-vars "deploy_target=${env(environment)}" \
+            --extra-vars "{'versions': ${versions} }" \
+            --extra-vars "ansible_python_interpreter=venv/bin/python2" \
+            --tags "${ansible_tags}"
+          else             
+            ansible-playbook ${verbosestring} "${playbookName}" \
+            -i ${hostList} \
+            --limit "${limit(environment, playbookName)}" \
+            --extra-vars "deploy_target=${env(environment)}" \
+            --extra-vars "{'versions': ${versions} }" \
+            --extra-vars "ansible_python_interpreter=venv/bin/python2" \
+            --tags "${ansible_tags}"
+          fi
           """
     }
 
