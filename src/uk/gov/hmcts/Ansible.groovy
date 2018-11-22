@@ -46,7 +46,7 @@ class Ansible implements Serializable {
 
     steps.sh """
       export PYTHONHTTPSVERIFY=0
-      if [ ! -d "${path.module}/venv" ]; then
+      if [ ! -d "venv" ]; then
           pip install --user virtualenv
           virtualenv venv
       fi
