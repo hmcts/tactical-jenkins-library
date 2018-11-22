@@ -45,6 +45,16 @@ class Ansible implements Serializable {
     }
 
     steps.sh """
+      export PYTHONHTTPSVERIFY=0
+      if [ ! -d "venv" ]; then
+          pip install --user virtualenv
+          virtualenv venv
+      fi
+      source venv/bin/activate
+      virtualenv --relocatable venv
+      # dirty hack: https://dmsimard.com/2016/01/08/selinux-python-virtualenv-chroot-and-ansible-dont-play-nice/
+      cp -r /usr/lib64/python2.7/site-packages/selinux/ venv/lib/python2.7/site-packages
+      pip install ansible azure-cli
       ansible-galaxy install -r requirements.yml --force --roles-path=roles/
     """
 
