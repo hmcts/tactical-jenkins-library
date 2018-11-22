@@ -21,14 +21,14 @@ class Ansible implements Serializable {
   }
 
   def runInstallPlaybook(versions, environment, ansible_branch='master', azure_tags='', ansible_tags='all', verbose=false) {
-    return run(versions, environment, 'install.yml', ansible_branch, azure_tags, ansible_tags, verbose, hostList)
+    return run(versions, environment, 'install.yml', ansible_branch, azure_tags, ansible_tags, verbose)
   }
 
   def runDeployPlaybook(versions, environment, ansible_branch='master', azure_tags='', ansible_tags='all', verbose=false) {
     return run(versions, environment, 'deploy.yml', ansible_branch, azure_tags, ansible_tags, verbose)
   }
 
-  def run(versions, environment, playbookName, ansible_branch='master', azure_tags='', ansible_tags='all', verbose=false, hostList='') {
+  def run(versions, environment, playbookName, ansible_branch='master', azure_tags='', ansible_tags='all', verbose=false) {
     // Generic checkout used to allow checking out of commit hashes
     // http://stackoverflow.com/a/43613408/4951015
 
@@ -72,23 +72,13 @@ class Ansible implements Serializable {
           export VAULT_ADDR='https://vault.reform.hmcts.net:6200'
           export ANSIBLE_FORCE_COLOR=true
 
-          if [[ -z "${hostList}// }" ]]; then
-            ansible-playbook ${verbosestring} "${playbookName}" \
-            -i ./inventory \
-            --limit "${limit(environment, playbookName)}" \
-            --extra-vars "deploy_target=${env(environment)}" \
-            --extra-vars "{'versions': ${versions} }" \
-            --extra-vars "ansible_python_interpreter=venv/bin/python2" \
-            --tags "${ansible_tags}"
-          else             
-            ansible-playbook ${verbosestring} "${playbookName}" \
-            -i ${hostList} \
-            --limit "${limit(environment, playbookName)}" \
-            --extra-vars "deploy_target=${env(environment)}" \
-            --extra-vars "{'versions': ${versions} }" \
-            --extra-vars "ansible_python_interpreter=venv/bin/python2" \
-            --tags "${ansible_tags}"
-          fi
+          ansible-playbook ${verbosestring} "${playbookName}" \
+          -i ./inventory \
+          --limit "${limit(environment, playbookName)}" \
+          --extra-vars "deploy_target=${env(environment)}" \
+          --extra-vars "{'versions': ${versions} }" \
+          --extra-vars "ansible_python_interpreter=venv/bin/python2" \
+          --tags "${ansible_tags}"
           """
     }
 
