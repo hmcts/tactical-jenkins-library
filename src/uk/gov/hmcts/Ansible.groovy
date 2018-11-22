@@ -67,6 +67,7 @@ class Ansible implements Serializable {
         verbosestring = " -vvv "
       }
       steps.sh """
+          source venv/bin/activate
           chmod +x ./inventory/azure_rm.py
 
           export ANSIBLE_HOST_KEY_CHECKING='False'
