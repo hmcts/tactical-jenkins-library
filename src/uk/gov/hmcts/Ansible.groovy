@@ -83,7 +83,7 @@ class Ansible implements Serializable {
           export ANSIBLE_FORCE_COLOR=true
 
           ansible-playbook ${verbosestring} "${playbookName}" \
-          -i 172.16.0.7, \
+          -i inventory \
           --limit "${limit(environment, playbookName)}" \
           --extra-vars "deploy_target=${env(environment)}" \
           --extra-vars "{'versions': ${versions} }" \
