@@ -44,16 +44,7 @@ class Ansible implements Serializable {
                       userRemoteConfigs: [[url: "git@git.reform.hmcts.net:${(repo())}"]]])
     }
 
-    steps.sh """
-      export PYTHONHTTPSVERIFY=0
-      virtualenv venv
-      source venv/bin/activate
-      virtualenv --relocatable venv
-      # dirty hack: https://dmsimard.com/2016/01/08/selinux-python-virtualenv-chroot-and-ansible-dont-play-nice/
-      cp -r /usr/lib64/python2.7/site-packages/selinux/ venv/lib/python2.7/site-packages
-      pip install ansible azure-cli
-      ansible-galaxy install -r requirements.yml --force --roles-path=roles/
-    """
+    steps.sh "ansible-galaxy install -r requirements.yml --force --roles-path=roles/"
 
     def azureInventoryFile = steps.libraryResource 'uk/gov/hmcts/azure_rm.py'
     steps.writeFile file: './inventory/azure_rm.py', text: azureInventoryFile
@@ -64,7 +55,6 @@ class Ansible implements Serializable {
         verbosestring = " -vvv "
       }
       steps.sh """
-          source venv/bin/activate
           chmod +x ./inventory/azure_rm.py
 
           export ANSIBLE_HOST_KEY_CHECKING='False'
@@ -84,7 +74,6 @@ class Ansible implements Serializable {
           --limit "${limit(environment, playbookName)}" \
           --extra-vars "deploy_target=${env(environment)}" \
           --extra-vars "{'versions': ${versions} }" \
-          --extra-vars "ansible_python_interpreter=venv/bin/python2" \
           --tags "${ansible_tags}"
           """
     }
