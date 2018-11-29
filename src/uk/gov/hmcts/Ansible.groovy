@@ -28,7 +28,7 @@ class Ansible implements Serializable {
     return run(versions, environment, 'deploy.yml', ansible_branch, azure_tags, ansible_tags, verbose, inventory)
   }
 
-  def run(versions, environment, playbookName, ansible_branch='master', azure_tags='', ansible_tags='all', verbose=false, inventory='') {
+  def run(versions, environment, playbookName, ansible_branch='master', azure_tags='', ansible_tags='all', verbose=false, inventory) {
     // Generic checkout used to allow checking out of commit hashes
     // http://stackoverflow.com/a/43613408/4951015
 
@@ -49,6 +49,7 @@ class Ansible implements Serializable {
     if (inventory == '') {
       def azureInventoryFile = steps.libraryResource 'uk/gov/hmcts/azure_rm.py'
       steps.writeFile file: './inventory/azure_rm.py', text: azureInventoryFile
+      steps.sh "chmod +x ./inventory/azure_rm.py"
       inventory = './inventory'
     }
     
@@ -60,8 +61,6 @@ class Ansible implements Serializable {
       }     
       
       steps.sh """
-          chmod +x ./inventory/azure_rm.py
-
           export ANSIBLE_HOST_KEY_CHECKING='False'
           export AZURE_PROFILE="${profile(environment)}"
           export AZURE_GROUP_BY_TAG='yes'
