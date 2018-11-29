@@ -20,15 +20,15 @@ class Ansible implements Serializable {
       .parseText(steps.libraryResource('uk/gov/hmcts/products.json'))
   }
 
-  def runInstallPlaybook(versions, environment, ansible_branch='master', azure_tags='', ansible_tags='all', verbose=false, inventory='') {
-    return run(versions, environment, 'install.yml', ansible_branch, azure_tags, ansible_tags, verbose, inventory)
+  def runInstallPlaybook(versions, environment, ansible_branch='master', azure_tags='', ansible_tags='all', verbose=false) {
+    return run(versions, environment, 'install.yml', ansible_branch, azure_tags, ansible_tags, verbose)
   }
 
-  def runDeployPlaybook(versions, environment, ansible_branch='master', azure_tags='', ansible_tags='all', verbose=false, inventory='') {
-    return run(versions, environment, 'deploy.yml', ansible_branch, azure_tags, ansible_tags, verbose, inventory)
+  def runDeployPlaybook(versions, environment, ansible_branch='master', azure_tags='', ansible_tags='all', verbose=false) {
+    return run(versions, environment, 'deploy.yml', ansible_branch, azure_tags, ansible_tags, verbose)
   }
 
-  def run(versions, environment, playbookName, ansible_branch='master', azure_tags='', ansible_tags='all', verbose=false, inventory) {
+  def run(versions, environment, playbookName, ansible_branch='master', azure_tags='', ansible_tags='all', verbose=false) {
     // Generic checkout used to allow checking out of commit hashes
     // http://stackoverflow.com/a/43613408/4951015
 
@@ -46,21 +46,17 @@ class Ansible implements Serializable {
 
     steps.sh "ansible-galaxy install -r requirements.yml --force --roles-path=roles/"
 
-    if (inventory == '') {
-      def azureInventoryFile = steps.libraryResource 'uk/gov/hmcts/azure_rm.py'
-      steps.writeFile file: './inventory/azure_rm.py', text: azureInventoryFile
-      steps.sh "chmod +x ./inventory/azure_rm.py"
-      inventory = './inventory'
-    }
-    
+    def azureInventoryFile = steps.libraryResource 'uk/gov/hmcts/azure_rm.py'
+    steps.writeFile file: './inventory/azure_rm.py', text: azureInventoryFile
     steps.wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'xterm']) {
 
       def verbosestring = ""
       if (verbose) {
         verbosestring = " -vvv "
-      }     
-      
+      }
       steps.sh """
+          chmod +x ./inventory/azure_rm.py
+
           export ANSIBLE_HOST_KEY_CHECKING='False'
           export AZURE_PROFILE="${profile(environment)}"
           export AZURE_GROUP_BY_TAG='yes'
@@ -74,7 +70,7 @@ class Ansible implements Serializable {
           export ANSIBLE_FORCE_COLOR=true
 
           ansible-playbook ${verbosestring} "${playbookName}" \
-          -i ${inventory} \
+          -i ./inventory \
           --limit "${limit(environment, playbookName)}" \
           --extra-vars "deploy_target=${env(environment)}" \
           --extra-vars "{'versions': ${versions} }" \
