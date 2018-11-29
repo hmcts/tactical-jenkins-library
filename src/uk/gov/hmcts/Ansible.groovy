@@ -47,7 +47,6 @@ class Ansible implements Serializable {
     steps.sh "ansible-galaxy install -r requirements.yml --force --roles-path=roles/"
 
     if (inventory == '') {
-      steps.sh "Using azure_rm.py to populate inventory"
       def azureInventoryFile = steps.libraryResource 'uk/gov/hmcts/azure_rm.py'
       steps.writeFile file: './inventory/azure_rm.py', text: azureInventoryFile
       steps.sh "chmod +x ./inventory/azure_rm.py"
