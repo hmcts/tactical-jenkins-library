@@ -46,10 +46,7 @@ class Ansible implements Serializable {
 
     steps.sh """
       export PYTHONHTTPSVERIFY=0
-      if [ ! -d "venv" ]; then
-          pip install --user virtualenv
-          virtualenv venv
-      fi
+      virtualenv venv
       source venv/bin/activate
       virtualenv --relocatable venv
       # dirty hack: https://dmsimard.com/2016/01/08/selinux-python-virtualenv-chroot-and-ansible-dont-play-nice/
